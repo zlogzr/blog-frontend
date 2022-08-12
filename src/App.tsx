@@ -1,14 +1,24 @@
-import { Button } from 'antd'
+import AppRouter from '@/routers'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import './App.less'
-import { ReactComponent as Logo } from './assets/logo.svg'
 
 function App() {
   return (
     <div className="app">
-      <Logo width={200} />
-      <Button type="primary">登录</Button>
-      <div className="test">111</div>
+      <QueryClientProvider
+        client={
+          new QueryClient({
+            defaultOptions: {
+              queries: {
+                refetchOnWindowFocus: false
+              }
+            }
+          })
+        }
+      >
+        <AppRouter />
+      </QueryClientProvider>
     </div>
   )
 }

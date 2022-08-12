@@ -4,6 +4,14 @@ const aliasPlugin = require('craco-alias')
 const lessPlugin = require('craco-less')
 
 module.exports = {
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:7001',
+        changeOrigin: true
+      }
+    }
+  },
   plugins: [
     // 支持别名
     {
