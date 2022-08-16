@@ -9,8 +9,8 @@ const localStorageKey = '__auth_provider_user__'
 
 export const getAuthUser = () => window[DefaultStorageType].getItem(localStorageKey)
 
-export const setAuthUser = ({ user }: { user: User }) => {
-  window[DefaultStorageType].setItem(localStorageKey, user.toString())
+export const setAuthUser = (user: User) => {
+  window[DefaultStorageType].setItem(localStorageKey, JSON.stringify(user))
   return user
 }
 
