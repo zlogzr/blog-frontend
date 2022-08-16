@@ -4,10 +4,12 @@ import { AuthForm } from '@/types'
 import { Form, Input, message } from 'antd'
 import { useNavigate } from 'react-router'
 
-const navigate = useNavigate()
 export const Login = ({ setError }: { setError: (error: Error) => void }) => {
+  const navigate = useNavigate()
+
   const handleSubmit = async (values: AuthForm) => {
     const res = await login(values)
+    console.log(res, 'res----------')
     if (res.code === 0) {
       navigate('/home')
       message.destroy()

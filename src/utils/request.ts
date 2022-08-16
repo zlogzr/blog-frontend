@@ -61,7 +61,7 @@ export const post = (
     $axios({
       method: 'POST',
       url,
-      data: qs.stringify(params),
+      data: params,
       headers: {
         'Content-Type': 'application/json;charset=UTF-8'
       },

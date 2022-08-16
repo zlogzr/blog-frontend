@@ -5,6 +5,7 @@ import 'antd/dist/antd.less'
 import zhCN from 'antd/es/locale/zh_CN'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import App from './App'
 import reportWebVitals from './reportWebVitals'
@@ -14,7 +15,19 @@ root.render(
   // <React.StrictMode>
   <ConfigProvider locale={zhCN}>
     <ErrorBoundary fallbackRender={FullPageErrorFallback}>
-      <App />
+      <QueryClientProvider
+        client={
+          new QueryClient({
+            defaultOptions: {
+              queries: {
+                refetchOnWindowFocus: false
+              }
+            }
+          })
+        }
+      >
+        <App />
+      </QueryClientProvider>
     </ErrorBoundary>
   </ConfigProvider>
   // </React.StrictMode>
