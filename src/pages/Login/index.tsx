@@ -1,3 +1,4 @@
+import { ReactComponent as Logo } from '@/assets/logo.svg'
 import { ErrorBox } from '@/components/lib'
 import { Button, Col, Divider, Row } from 'antd'
 import { useState } from 'react'
@@ -13,7 +14,9 @@ const LoginPage = () => {
     <div className="login-page">
       <div className="login-box">
         <Row>
-          <Col span={12}></Col>
+          <Col span={12}>
+            <Logo />
+          </Col>
           <Col span={12}>
             <div className="login-card">
               <h2 className="login-title">{isRegister ? '请注册' : '请登录'}</h2>

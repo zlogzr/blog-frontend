@@ -1,5 +1,5 @@
+import { register } from '@/auth/auth-provider'
 import { LongButton } from '@/components/lib'
-import { register } from '@/store/auth-provider'
 import { Form, Input, message } from 'antd'
 
 interface IProps {
@@ -23,7 +23,7 @@ export const Register = ({ setError, setIsRegister }: IProps) => {
     if (res.code === 0) {
       setIsRegister(false)
       message.destroy()
-      message.success(res.msg)
+      message.success(`${res.msg}，请登录`)
     } else {
       setError(new Error(res.msg))
     }

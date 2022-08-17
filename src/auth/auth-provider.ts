@@ -2,23 +2,18 @@
 import { AuthForm, User } from '@/types'
 import { post } from '@/utils/request'
 
-import { setUser } from './auth.slice'
-
 const DefaultStorageType = 'localStorage'
 const localStorageKey = '__auth_provider_user__'
 
-export const getAuthUser = () => window[DefaultStorageType].getItem(localStorageKey)
-
-export const setAuthUser = (user: User) => {
+export const setAuthUser = (user: User | null) =>
   window[DefaultStorageType].setItem(localStorageKey, JSON.stringify(user))
-  return user
-}
+
+export const getAuthUser = () => window[DefaultStorageType].getItem(localStorageKey)
 
 export const login = async (data: AuthForm) => {
   const res: any = await post('/api/user/login', data)
   if (res.code === 0) {
     setAuthUser(res.data)
-    setUser(res.data)
   }
   return res
 }
@@ -30,5 +25,5 @@ export const register = async (data: AuthForm) => {
 
 export const logout = async () => {
   window[DefaultStorageType].removeItem(localStorageKey)
-  // setAuthUser(null)
+  setAuthUser(null)
 }

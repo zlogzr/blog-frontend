@@ -1,21 +1,24 @@
+import { login } from '@/auth/auth-provider'
 import { LongButton } from '@/components/lib'
-import { login } from '@/store/auth-provider'
-import { selectUser } from '@/store/auth.slice'
-import { AuthForm } from '@/types'
+import { setUser } from '@/store/auth.slice'
+import { AuthForm, User } from '@/types'
 import { Form, Input, message } from 'antd'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 
 export const Login = ({ setError }: { setError: (error: Error) => void }) => {
   const navigate = useNavigate()
+  const dispatch: (...args: any[]) => Promise<User> = useDispatch()
 
   const handleSubmit = async (values: AuthForm) => {
     const res = await login(values)
+    dispatch(setUser(res.data))
     if (res.code === 0) {
       message.destroy()
-      message.success(res.message)
+      message.success(res.msg)
       navigate('/home')
     } else {
-      setError(new Error(res.message))
+      setError(new Error(res.msg))
     }
   }
 
