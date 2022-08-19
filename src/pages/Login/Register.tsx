@@ -1,5 +1,5 @@
-import { register } from '@/auth/auth-provider'
 import { LongButton } from '@/components/lib'
+import { useAuth } from '@/hooks/useAuth'
 import { Form, Input, message } from 'antd'
 
 interface IProps {
@@ -7,6 +7,8 @@ interface IProps {
   setIsRegister: (boo: boolean) => void
 }
 export const Register = ({ setError, setIsRegister }: IProps) => {
+  const { register } = useAuth()
+
   const handleSubmit = async ({
     cpassword,
     ...values

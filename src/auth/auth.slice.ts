@@ -1,7 +1,7 @@
 import { User } from '@/types'
 import { createSlice } from '@reduxjs/toolkit'
 
-import { RootState } from '.'
+import { RootState } from '../store'
 
 interface State {
   user: User | null
