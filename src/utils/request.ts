@@ -6,9 +6,9 @@ import axios from 'axios'
 import qs from 'qs'
 
 interface IResult {
-  sucesss?: boolean
-  errMsg?: string
-  data: any
+  code?: number
+  msg?: string
+  data?: any
 }
 
 // 创建axios实例

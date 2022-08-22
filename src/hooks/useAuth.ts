@@ -29,8 +29,14 @@ export const useAuth = () => {
     Auth.logout()
     dispatch(setUser(null))
   }, [dispatch])
+
+  const bootUser = (data: any) => {
+    dispatch(setUser(data))
+    Auth.setAuthUser(data)
+  }
   return {
     user,
+    bootUser,
     login,
     register,
     logout
