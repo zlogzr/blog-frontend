@@ -2,7 +2,7 @@ import AppRouter from '@/routers'
 
 import './App.less'
 
-function App() {
+const App = () => {
   return (
     <div className="app">
       <AppRouter />

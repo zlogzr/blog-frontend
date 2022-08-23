@@ -8,7 +8,13 @@ const localStorageKey = '__auth_provider_user__'
 export const setAuthUser = (user: User | null) =>
   window[DefaultStorageType].setItem(localStorageKey, JSON.stringify(user))
 
-export const getAuthUser = () => window[DefaultStorageType].getItem(localStorageKey)
+export const getAuthUser = () => {
+  const data = window[DefaultStorageType].getItem(localStorageKey)
+  if (data) {
+    return JSON.parse(data)
+  }
+  return null
+}
 
 export const login = async (data: AuthForm) => {
   const res: any = await post('/api/user/login', data)
@@ -25,5 +31,4 @@ export const register = async (data: AuthForm) => {
 
 export const logout = async () => {
   window[DefaultStorageType].removeItem(localStorageKey)
-  setAuthUser(null)
 }

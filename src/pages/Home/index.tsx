@@ -1,10 +1,11 @@
+import PageContent from './components/PageContent'
 import PageHeader from './components/PageHeader'
-import './style.less'
 
 const Home = () => {
   return (
     <div className="home-page">
       <PageHeader />
+      <PageContent />
     </div>
   )
 }
