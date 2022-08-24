@@ -1,5 +1,6 @@
+import PageHeader from '@/components/PageHeader'
+
 import PageContent from './components/PageContent'
-import PageHeader from './components/PageHeader'
 
 const Home = () => {
   return (

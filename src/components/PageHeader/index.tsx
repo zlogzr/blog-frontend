@@ -5,6 +5,7 @@ import { HddTwoTone } from '@ant-design/icons'
 import styled from '@emotion/styled'
 import { Button, Dropdown, Menu } from 'antd'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import './style.less'
 
@@ -39,8 +40,8 @@ const User = () => {
             {
               key: 'personalCenter',
               label: (
-                <Button onClick={() => {}} type={'link'}>
-                  个人中心
+                <Button type={'link'}>
+                  <Link to="/personal">个人中心</Link>
                 </Button>
               )
             },

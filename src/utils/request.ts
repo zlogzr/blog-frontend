@@ -2,14 +2,9 @@
  * @Author: 张洋
  * @Description: 请求文件  基于axios
  */
+import { BackResult } from '@/types'
 import axios from 'axios'
 import qs from 'qs'
-
-interface IResult {
-  code?: number
-  msg?: string
-  data?: any
-}
 
 // 创建axios实例
 const $axios = axios.create({
@@ -33,7 +28,7 @@ export const get = (
   url: string,
   params?: { [key: string]: any },
   ...args: any[]
-): Promise<IResult> =>
+): Promise<BackResult> =>
   new Promise((resolve, reject) => {
     $axios({
       method: 'GET',
@@ -56,7 +51,7 @@ export const post = (
   url: string,
   params?: { [key: string]: any },
   ...args: any[]
-): Promise<IResult> =>
+): Promise<BackResult> =>
   new Promise((resolve, reject) => {
     $axios({
       method: 'POST',

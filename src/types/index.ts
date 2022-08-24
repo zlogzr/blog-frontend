@@ -10,3 +10,9 @@ export interface AuthForm {
   username: string
   password: string
 }
+
+export interface BackResult {
+  code?: number
+  msg?: string
+  data?: any
+}
