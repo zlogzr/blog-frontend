@@ -1,9 +1,10 @@
 export interface User {
-  id: string
-  username: string
-  realname: string
-  role: number
-  createtime: number
+  id?: string
+  username?: string
+  password?: string
+  realname?: string
+  role?: number
+  createtime?: number
 }
 
 export interface AuthForm {

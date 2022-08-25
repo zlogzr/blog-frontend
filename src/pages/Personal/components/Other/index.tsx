@@ -1,5 +1,5 @@
 const Other = () => {
-  return <div>222</div>
+  return <div>其他信息</div>
 }
 
 export default Other
