@@ -8,6 +8,7 @@ const Login = lazy(() => import('@/pages/Login'))
 const Home = lazy(() => import('@/pages/Home'))
 const BlogDetail = lazy(() => import('@/pages/BlogDetail'))
 const Personal = lazy(() => import('@/pages/Personal'))
+const Manage = lazy(() => import('@/pages/Manage'))
 
 const AppRouter = () => {
   return (
@@ -18,6 +19,7 @@ const AppRouter = () => {
         <Route path="/home" element={<Home />} />
         <Route path={'/home/:blogId'} element={<BlogDetail />} />
         <Route path={'/personal/*'} element={<Personal />} />
+        <Route path={'/manage/*'} element={<Manage />} />
         <Route path={'/*'} element={<App404 />} />
       </Routes>
     </Suspense>

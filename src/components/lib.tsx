@@ -36,3 +36,10 @@ export const FullPageErrorFallback = ({ error }: { error: Error | null }) => (
 export const LongButton = styled(Button)`
   width: 100%;
 `
+
+export const Container = styled.div`
+  min-height: calc(100vh - 188px);
+  margin: 12px;
+  padding: 12px;
+  background-color: #fff;
+`

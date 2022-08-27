@@ -4,24 +4,46 @@ import { resetRoute } from '@/utils'
 import { HddTwoTone } from '@ant-design/icons'
 import styled from '@emotion/styled'
 import { Button, Dropdown, Menu } from 'antd'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import './style.less'
 
+const Control = () => {
+  const isManage = useLocation().pathname.split('/')[1] === 'manage'
+  if (isManage) {
+    return (
+      <Button type="link">
+        <Link to="/home">用户门户</Link>
+      </Button>
+    )
+  }
+  return (
+    <Button type="link">
+      <Link to="/manage">管控台</Link>
+    </Button>
+  )
+}
+
 const PageHeader = () => {
   return (
-    <Header between={true} className="pageheader-component">
-      <div className="left" onClick={resetRoute}>
-        <ARow gap={1}>
-          <HddTwoTone twoToneColor="#4578F8" style={{ fontSize: '20px' }} />
-          <h1>Blog</h1>
-        </ARow>
-      </div>
-      <div className="right">
-        <User />
-      </div>
-    </Header>
+    <div className="page-header-component">
+      <Header between={true}>
+        <div className="left" onClick={resetRoute}>
+          <ARow gap={1}>
+            <HddTwoTone twoToneColor="#4578F8" style={{ fontSize: '20px' }} />
+            <h1>Blog</h1>
+          </ARow>
+        </div>
+        <div className="right">
+          <ARow gap={1}>
+            <Control />
+            <User />
+          </ARow>
+        </div>
+      </Header>
+      <div className="placehoder" />
+    </div>
   )
 }
 
