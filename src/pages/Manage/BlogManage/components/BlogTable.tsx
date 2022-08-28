@@ -42,6 +42,7 @@ const BlogTable = () => {
   return (
     <div>
       <Table
+        rowKey="id"
         loading={isLoading}
         rowSelection={rowSelection}
         columns={columns}
