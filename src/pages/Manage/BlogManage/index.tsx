@@ -1,24 +1,19 @@
 import APageHeader from '@/components/APageheader'
 import { Container } from '@/components/lib'
 import { Button, Space } from 'antd'
-import { useState } from 'react'
 
 import BlogModal from './components/BlogModal'
 import BlogTable from './components/BlogTable'
+import { useBlogModal } from './hook/blogModal'
 import './style.less'
 
 const BlogManage = () => {
-  const [visible, setVisible] = useState(false)
+  const { startAdd } = useBlogModal()
   return (
     <div className="blog-manage">
       <APageHeader title="博客管理">
         <Space>
-          <Button
-            type="primary"
-            onClick={() => {
-              setVisible(true)
-            }}
-          >
+          <Button type="primary" onClick={startAdd}>
             新增
           </Button>
           <Button type="primary" danger>
@@ -29,7 +24,7 @@ const BlogManage = () => {
       <Container>
         <BlogTable />
       </Container>
-      <BlogModal visible={visible} setVisible={setVisible} />
+      <BlogModal />
     </div>
   )
 }

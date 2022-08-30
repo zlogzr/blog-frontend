@@ -17,3 +17,11 @@ export interface BackResult {
   msg?: string
   data?: any
 }
+
+export interface IBlog {
+  id: number
+  title: string
+  content: string
+  author: string
+  createtime: string
+}
