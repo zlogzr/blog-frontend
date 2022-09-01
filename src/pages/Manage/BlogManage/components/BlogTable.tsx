@@ -1,9 +1,10 @@
-import { Divider, Space, Table, Typography } from 'antd'
+import { Divider, Modal, Space, Table, Typography } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import moment from 'moment'
 import React from 'react'
 
-import { useBlogs } from '../hook/api'
+import { useBlogIds } from '../blogmanage.slice'
+import { useBlogs, useDelBlog } from '../hook/api'
 import { useBlogModal } from '../hook/blogModal'
 
 interface DataType {
@@ -14,15 +15,28 @@ interface DataType {
   createtime: string
 }
 
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
-  }
-}
-
 const BlogTable = () => {
   const { data, isLoading } = useBlogs()
   const { startEdit } = useBlogModal()
+  const { mutate } = useDelBlog()
+  const [ids, setIds] = useBlogIds()
+
+  const confirmDeleteBlog = (id: number) => {
+    Modal.confirm({
+      title: '确定删除这个博客吗?',
+      content: '点击确定删除',
+      onOk() {
+        mutate(
+          { id },
+          {
+            onSuccess: res => {
+              if (res.code) setIds(ids.filter(item => item !== id))
+            }
+          }
+        )
+      }
+    })
+  }
 
   const columns: ColumnsType<DataType> = [
     {
@@ -52,13 +66,18 @@ const BlogTable = () => {
       render: (text, record) => (
         <Space split={<Divider type="vertical" />}>
           <Typography.Link onClick={() => startEdit(record.id)}>编辑</Typography.Link>
-          <Typography.Link>删除</Typography.Link>
+          <Typography.Link onClick={() => confirmDeleteBlog(record.id)}>删除</Typography.Link>
         </Space>
       )
     }
   ]
+  const rowSelection = {
+    onChange: (selectedRowKeys: React.Key[]) => {
+      setIds(selectedRowKeys as number[])
+    }
+  }
   return (
-    <div>
+    <div className="blog-table">
       <Table
         rowKey="id"
         loading={isLoading}

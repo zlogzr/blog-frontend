@@ -19,21 +19,22 @@ export const cleanObject = (object?: { [key: string]: unknown }) => {
   return result
 }
 
+// 为false可取消成功或失败的提示
 interface handleBackResultOptions {
-  successTip: boolean
-  failTip: boolean
+  successTip?: boolean
+  failTip?: boolean
 }
 
 export const handleBackResult = (res: BackResult, options?: handleBackResultOptions) => {
   if (res.code === -1) {
-    if (options?.failTip) {
+    if (options?.failTip !== false) {
       message.destroy()
       message.error(res.msg)
     }
     return false
   }
   if (res.code === 0) {
-    if (options?.successTip) {
+    if (options?.successTip !== false) {
       message.destroy()
       message.success(res.msg)
     }
