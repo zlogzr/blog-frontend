@@ -1,3 +1,11 @@
+/*
+ * @Author: zlogzr
+ * @Date: 2022-08-30 10:12
+ * @LastEditors: zlogzr
+ * @LastEditTime: 2022-09-02 17:45
+ * @FilePath: \blog-node-mysql-expressd:\Desktop\blog-frontend\src\pages\Manage\BlogManage\components\BlogTable.tsx
+ * @Description: 博客管理 table部分
+ */
 import { Divider, Modal, Space, Table, Typography } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import moment from 'moment'
@@ -6,6 +14,7 @@ import React from 'react'
 import { useBlogIds } from '../blogmanage.slice'
 import { useBlogs, useDelBlog } from '../hook/api'
 import { useBlogModal } from '../hook/blogModal'
+import { useBlogSearchParams } from '../hook/useBlogSearchParams'
 
 interface DataType {
   id: number
@@ -16,7 +25,8 @@ interface DataType {
 }
 
 const BlogTable = () => {
-  const { data, isLoading } = useBlogs()
+  const [params] = useBlogSearchParams()
+  const { data, isLoading } = useBlogs(params)
   const { startEdit } = useBlogModal()
   const { mutate } = useDelBlog()
   const [ids, setIds] = useBlogIds()

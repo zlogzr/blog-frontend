@@ -1,7 +1,16 @@
+/*
+ * @Author: zlogzr
+ * @Date: 2022-08-30 11:09
+ * @LastEditors: zlogzr
+ * @LastEditTime: 2022-09-02 17:55
+ * @FilePath: \blog-node-mysql-expressd:\Desktop\blog-frontend\src\pages\Manage\BlogManage\hook\api.ts
+ * @Description: 博客管理api
+ */
+import { QueryKey, useMutation, useQuery, useQueryClient } from 'react-query'
+
 import { BackResult, IBlog } from '@/types'
 import { cleanObject } from '@/utils'
 import { get, post } from '@/utils/request'
-import { QueryKey, useMutation, useQuery, useQueryClient } from 'react-query'
 
 // useQuery 第三个参数配置
 const useConfig = (queryKey: QueryKey) => {
@@ -13,8 +22,8 @@ const useConfig = (queryKey: QueryKey) => {
   }
 }
 
-export const useBlogs = (param?: Partial<IBlog>) =>
-  useQuery(['blogs', cleanObject(param)], () => get('/api/blog/list', { data: param }))
+export const useBlogs = (params: { keyword?: string }) =>
+  useQuery(['blogs', cleanObject(params)], () => get('/api/blog/list', cleanObject(params)))
 
 export const useBlog = (id?: number) =>
   useQuery(['blog', { id }], () => get(`/api/blog/detail?id=${id}`), {

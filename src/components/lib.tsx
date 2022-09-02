@@ -1,3 +1,11 @@
+/*
+ * @Author: zlogzr
+ * @Date: 2022-08-12 16:16
+ * @LastEditors: zlogzr
+ * @LastEditTime: 2022-09-02 16:31
+ * @FilePath: \blog-node-mysql-expressd:\Desktop\blog-frontend\src\components\lib.tsx
+ * @Description:
+ */
 import styled from '@emotion/styled'
 import { Button, Spin, Typography } from 'antd'
 
@@ -38,7 +46,7 @@ export const LongButton = styled(Button)`
 `
 
 export const Container = styled.div`
-  min-height: calc(100vh - 188px);
+  min-height: calc(100vh - 192px);
   margin: 12px;
   padding: 12px;
   background-color: #fff;

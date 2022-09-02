@@ -1,8 +1,9 @@
+import { Suspense, lazy } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+
+import App404 from '@/components/App404'
 import { FullPageLoading } from '@/components/lib'
 import { useAuth } from '@/hooks/useAuth'
-import { Button, Result } from 'antd'
-import { Suspense, lazy } from 'react'
-import { Link, Navigate, Route, Routes } from 'react-router-dom'
 
 const Login = lazy(() => import('@/pages/Login'))
 const Home = lazy(() => import('@/pages/Home'))
@@ -25,19 +26,6 @@ const AppRouter = () => {
     </Suspense>
   )
 }
-
-const App404 = () => (
-  <Result
-    status="404"
-    title="404"
-    subTitle="Sorry, the page you visited does not exist."
-    extra={
-      <Button type="primary">
-        <Link to="home">Back Home</Link>
-      </Button>
-    }
-  />
-)
 
 const RootRoute = () => {
   const { user } = useAuth()

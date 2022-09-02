@@ -15,7 +15,7 @@
   "proseWrap": "preserve",
   "htmlWhitespaceSensitivity": "ignore",
   "endOfLine": "auto",
-  "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+  "importOrder": ["^@core/(.*)$", "^@server/(.*)$","@/", "^@ui/(.*)$", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }
