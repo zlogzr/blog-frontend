@@ -2,7 +2,7 @@
  * @Author: zlogzr
  * @Date: 2022-08-30 10:12
  * @LastEditors: zlogzr
- * @LastEditTime: 2022-09-02 17:42
+ * @LastEditTime: 2022-09-07 14:12
  * @FilePath: \blog-node-mysql-expressd:\Desktop\blog-frontend\src\pages\Manage\BlogManage\index.tsx
  * @Description: 博客管理主页面
  */
@@ -10,21 +10,23 @@ import { Button, Input, Modal, Space } from 'antd'
 
 import APageHeader from '@/components/APageheader'
 import { Container } from '@/components/lib'
+import { useSetUrlSearchParam, useUrlQueryParam } from '@/hooks/useUrlQueryParam'
 
 import { useBlogIds } from './blogmanage.slice'
 import BlogModal from './components/BlogModal'
 import BlogTable from './components/BlogTable'
 import { useBatDelBlog } from './hook/api'
 import { useBlogModal } from './hook/blogModal'
-import { useBlogSearchParams } from './hook/useBlogSearchParams'
 import './style.less'
 
 const BlogManage = () => {
   const { startAdd } = useBlogModal()
   const { mutate } = useBatDelBlog()
   const [ids, setIds] = useBlogIds()
-  const [, setParams] = useBlogSearchParams()
+  const { keyword } = useUrlQueryParam(['keyword'])
+  const setUrlSearchParam = useSetUrlSearchParam()
 
+  // 确定批量删除
   const confirmBatDelBlog = () => {
     Modal.confirm({
       title: '确定批量删除博客吗?',
@@ -43,13 +45,15 @@ const BlogManage = () => {
   }
   // 搜索
   const handleSearch = (value: string) => {
-    setParams({ keyword: value })
+    setUrlSearchParam({ keyword: value })
   }
   return (
     <div className="blog-manage">
       <APageHeader
         title="博客管理"
-        extra={<Input.Search placeholder="请输入标题" onSearch={handleSearch} />}
+        extra={
+          <Input.Search defaultValue={keyword} placeholder="请输入标题" onSearch={handleSearch} />
+        }
       >
         <Space>
           <Button type="primary" onClick={startAdd}>

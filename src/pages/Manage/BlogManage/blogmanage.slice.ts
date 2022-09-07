@@ -1,6 +1,7 @@
-import { RootState } from '@/store'
 import { createSlice } from '@reduxjs/toolkit'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { RootState } from '@/store'
 
 interface State {
   selectBlogids: number[]
@@ -20,9 +21,8 @@ export const blogManageSlice = createSlice({
   }
 })
 
-export const { setSelectBlogIds } = blogManageSlice.actions
-
-export const selectBlogIds = (state: RootState) => state.blogManage.selectBlogids
+const { setSelectBlogIds } = blogManageSlice.actions
+const selectBlogIds = (state: RootState) => state.blogManage.selectBlogids
 
 export const useBlogIds = () => {
   const blogIds = useSelector(selectBlogIds)

@@ -2,7 +2,7 @@
  * @Author: zlogzr
  * @Date: 2022-08-30 11:09
  * @LastEditors: zlogzr
- * @LastEditTime: 2022-09-02 17:55
+ * @LastEditTime: 2022-09-07 14:03
  * @FilePath: \blog-node-mysql-expressd:\Desktop\blog-frontend\src\pages\Manage\BlogManage\hook\api.ts
  * @Description: 博客管理api
  */
@@ -22,7 +22,7 @@ const useConfig = (queryKey: QueryKey) => {
   }
 }
 
-export const useBlogs = (params: { keyword?: string }) =>
+export const useBlogs = (params?: { [key: string]: unknown }) =>
   useQuery(['blogs', cleanObject(params)], () => get('/api/blog/list', cleanObject(params)))
 
 export const useBlog = (id?: number) =>

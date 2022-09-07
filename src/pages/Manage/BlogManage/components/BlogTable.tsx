@@ -2,7 +2,7 @@
  * @Author: zlogzr
  * @Date: 2022-08-30 10:12
  * @LastEditors: zlogzr
- * @LastEditTime: 2022-09-02 17:45
+ * @LastEditTime: 2022-09-07 14:11
  * @FilePath: \blog-node-mysql-expressd:\Desktop\blog-frontend\src\pages\Manage\BlogManage\components\BlogTable.tsx
  * @Description: 博客管理 table部分
  */
@@ -11,10 +11,11 @@ import type { ColumnsType } from 'antd/es/table'
 import moment from 'moment'
 import React from 'react'
 
+import { useUrlQueryParam } from '@/hooks/useUrlQueryParam'
+
 import { useBlogIds } from '../blogmanage.slice'
 import { useBlogs, useDelBlog } from '../hook/api'
 import { useBlogModal } from '../hook/blogModal'
-import { useBlogSearchParams } from '../hook/useBlogSearchParams'
 
 interface DataType {
   id: number
@@ -25,12 +26,13 @@ interface DataType {
 }
 
 const BlogTable = () => {
-  const [params] = useBlogSearchParams()
+  const params = useUrlQueryParam(['keyword'])
   const { data, isLoading } = useBlogs(params)
   const { startEdit } = useBlogModal()
   const { mutate } = useDelBlog()
   const [ids, setIds] = useBlogIds()
 
+  // 确认删除
   const confirmDeleteBlog = (id: number) => {
     Modal.confirm({
       title: '确定删除这个博客吗?',
